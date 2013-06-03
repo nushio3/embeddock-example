@@ -1,9 +1,7 @@
-{-# OPTIONS_GHC -F -pgmF embeddock -optF $EMBED$ #-}
-
 {- | To use embeddock, place the following preprocessor pragma at the
  beginning of your source code.
 
- > {-# OPTIONS_GHC -F -pgmF embeddock -optF $EMBED$ #-}
+ > OPTIONS_GHC -F -pgmF embeddock -optF $EMBED$
 
  You can specify the embed string by @-optF@. The default embed
  string is "$" . Expressions in parenthesis that immediately follow
@@ -18,12 +16,27 @@
  due to the backend lexer.
 -}
 
+{-# OPTIONS_GHC -F -pgmF embeddock -optF $EMBED$ #-}
+
+
+
 module Embeddock.Example where
 
+import Data.Time
+import System.IO.Unsafe
 
-{- | An answer to the life, the universe and everything.
- the answer is $EMBED$(show answer) .
--}
+{- | An answer to the life, the universe and everything. The answer
+is $EMBED$(show answer) .-}
 
 answer :: Integer
 answer = 6*7
+
+
+
+
+{- | The time this file was processed. The current time was
+ $EMBED$(show now). Please refer to the Source to see how these
+documents were generated. -}
+
+now :: UTCTime
+now = unsafePerformIO $ getCurrentTime
