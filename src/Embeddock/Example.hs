@@ -16,7 +16,7 @@
  due to the backend lexer.
 -}
 
-{-# OPTIONS_GHC -F -pgmF embeddock -optF $EMBED$ #-}
+{-# OPTIONS_GHC -F -pgmF embeddock #-}
 
 
 
@@ -26,16 +26,15 @@ import Data.Time
 import System.IO.Unsafe
 
 {- | An answer to the life, the universe and everything. The answer
-is $EMBED$(show answer) .-}
+is #{show answer} .-}
 
 answer :: Integer
 answer = 6*7
 
 
 
-
 {- | The time this file was processed. The current time was
- $EMBED$(show now). Please refer to the Source to see how these
+ #{show now}. Please refer to the Source to see how these
 documents were generated. -}
 
 now :: UTCTime
